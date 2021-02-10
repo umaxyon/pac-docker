@@ -1,0 +1,13 @@
+※実行前に 「job_normal」「job_mecab」直下に「.aws」「.ssh」を配置する
+
+docker build ./ -t pac-job
+[ECRへのdockerイメージの登録]
+aws ecr get-login --no-include-email --region ap-northeast-1
+※win-power-shellは以下実行。それ以外は上のコマンドの結果出力されるコマンド（長い）を実行
+Invoke-Expression -Command (aws ecr get-login --no-include-email --region ap-northeast-1)
+docker tag pac-job:latest 007575903924.dkr.ecr.ap-northeast-1.amazonaws.com/pac-job:latest
+docker push 007575903924.dkr.ecr.ap-northeast-1.amazonaws.com/pac-job:latest
+
+
+docker tag pac-job-mecab:latest 007575903924.dkr.ecr.ap-northeast-1.amazonaws.com/pac-job-mecab:latest
+docker push 007575903924.dkr.ecr.ap-northeast-1.amazonaws.com/pac-job-mecab:latest
